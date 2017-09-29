@@ -50,6 +50,7 @@ export default class Game {
     this._score = new Score(props);
     this._snake = new Snake({ snakeBodyPartsLength });
 
+    this._calculate = this._calculate.bind(this);
     this._drawGame = this._drawGame.bind(this);
     this._keyDownHandler = this._keyDownHandler.bind(this);
 
@@ -101,15 +102,15 @@ export default class Game {
 
     if (typeof gameLoop !== 'undefined') clearInterval(gameLoop);
 
-    this._gameLoop.setGameLoop(setInterval(this._drawGame, this._timeInterval));
+    this._gameLoop.setGameLoop(setInterval(this._calculate, this._timeInterval));
   }
 
   /**
-   * Draw elements of the js
+   * Calculate logic for game
    *
    * @returns {void}
    */
-  _drawGame() {
+  _calculate() {
     const canvas = this._draw.getCanvas();
     const ctx = this._draw.getCtx();
     const direction = this._direction.getDirection();
@@ -138,10 +139,19 @@ export default class Game {
       }
 
       this._snake.setSnakeBodyParts([{ x, y }, ...this._snake.getSnakeBodyParts()]);
-      this._draw.drawSnake(this._snake.getSnakeBodyParts());
-      this._draw.drawFood(this._food.getFoodBound());
-      this._draw.drawScore(this._score.getScoreCount());
+      this._drawGame();
     }
+  }
+
+  /**
+   * Draw elements of the js
+   *
+   * @returns {void}
+   */
+  _drawGame() {
+    this._draw.drawSnake(this._snake.getSnakeBodyParts());
+    this._draw.drawFood(this._food.getFoodBound());
+    this._draw.drawScore(this._score.getScoreCount());
   }
 
   /**
