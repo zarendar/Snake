@@ -1,0 +1,31 @@
+{
+  "name": "snake",
+  "version": "0.0.1",
+  "description": "The snake game on javascript and html 5 canvas",
+  "main": "game.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --inline --hot --progress --colors",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "javascript",
+    "js",
+    "canvas",
+    "html5",
+    "oop"
+  ],
+  "author": "andrey antoniuk",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
